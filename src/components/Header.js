@@ -1,16 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming you have routes set up
+import { Link } from 'react-router-dom';
+import './Header.css'; // Header styles
 
-const Header = () => {
+function Header() {
   return (
-    <header>
-      <h1>Coral AI</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/upload">Upload</Link>
+    <header className="app-header">
+      <div className="left-section">
+        <h1 className="project-name">CoralGuard</h1>
+      </div>
+      <nav className="right-section">
+        <Link to="/" className="nav-button">Home</Link>
+        <Link to="/upload" className="nav-button">Upload</Link>
       </nav>
     </header>
   );
-};
+}
 
 export default Header;

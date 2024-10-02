@@ -7,9 +7,6 @@ function Footer() {
       <p className="disclaimer">
         Disclaimer: This application is based on different model comparisons and cannot guarantee 100% accuracy in results.
       </p>
-      <div className="college-logo">
-        <img src="/path/to/your/college/logo.png" alt="College Logo" />
-      </div>
     </footer>
   );
 }

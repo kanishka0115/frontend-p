@@ -1,61 +1,53 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer'; // Import Footer
-import axios from 'axios';
-import './UploadPage.css'; // For additional styling
+import Header from '../components/Header'; // Adjust the path as necessary
+import Footer from '../components/Footer'; // Adjust the path as necessary
+import './UploadPage.css'; // Import your CSS file
 
-function UploadPage() {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [aiResult, setAiResult] = useState(null);
+const UploadPage = () => {
+  const [file, setFile] = useState(null);
+  const [result, setResult] = useState(null);
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileChange = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-
-      try {
-        // Replace this URL with your actual AI API endpoint
-        const response = await axios.post('https://your-ai-backend.com/upload', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
-
-        setAiResult(response.data.result);
-      } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('Failed to upload file or process the image.');
-      }
-    } else {
-      alert('Please select a file to upload.');
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Mock result generation (replace with your logic)
+    setResult('Your image has been uploaded successfully!');
   };
 
   return (
-    <div>
+    <div className="upload-container">
       <Header />
-      <div className="upload-container">
-        <h1>Upload Your Coral Reef Picture</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          <br /><br />
-          <button type="submit" className="submit-button">Submit</button>
-        </form>
-
-        {aiResult && (
-          <div className="result-container">
-            <h2>AI Analysis Result:</h2>
-            <p>{aiResult}</p>
-          </div>
-        )}
+      <div className="upload-content">
+        <h1 className="upload-title">Upload Your Coral Image</h1>
+        <div className="upload-card">
+          <form className="upload-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fileUpload" className="upload-label">Choose Image:</label>
+              <input 
+                type="file" 
+                id="fileUpload" 
+                className="upload-input" 
+                accept="image/*" 
+                onChange={handleFileChange} 
+                required
+              />
+            </div>
+            {file && (
+              <div className="image-preview">
+                <img src={file} alt="Preview" className="preview-image" />
+              </div>
+            )}
+            <button type="submit" className="upload-button">Upload</button>
+          </form>
+          {result && <div className="result-message">{result}</div>}
+        </div>
       </div>
-      <Footer /> {/* Add Footer */}
+      <Footer />
     </div>
   );
-}
+};
 
 export default UploadPage;

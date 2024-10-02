@@ -1,19 +1,11 @@
+/* Footer styles */
 .app-footer {
-    background-color: #f8f9fa; /* Light background color */
-    padding: 20px;
-    text-align: center;
-    position: relative; /* Optional: for positioning */
-  }
-  
-  .disclaimer {
-    font-size: 14px;
-    color: #6c757d; /* Muted text color */
-    margin: 0;
-  }
-  
-  .college-logo img {
-    max-width: 100px; /* Adjust as needed */
-    height: auto;
-    margin-top: 10px; /* Space between disclaimer and logo */
-  }
-  
+  padding: 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.disclaimer {
+  font-size: 14px;
+  color: #555;
+}
